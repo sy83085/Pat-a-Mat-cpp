@@ -41,9 +41,6 @@ set(PROJECT_SOURCES
         receivethread.h
         response.cpp
         response.h
-        opencvimagelabel.cpp
-        opencvimagelabel.h
-#        atlstr.h
 )
 
 if(WIN32)

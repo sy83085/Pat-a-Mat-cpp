@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <opencv2/opencv.hpp>
 #include <QString>
 #include <string>
 
@@ -11,8 +10,8 @@
 class Request
 {
 public:
-    enum Type{Image = 1, TextMessage = 2, RoomList, MakeRoom, EnterRoom, LeaveRoom};
-    enum Data{String = 0, Int, OpenCVImage};
+    enum Type{TextMessage = 0};
+    enum Data{String = 0};
     Request();
     ~Request();
 
@@ -31,25 +30,11 @@ protected:
     std::vector<int> _dataLengthList;
 };
 
-class ReqImage : public Request
-{
-public:
-    ReqImage(const cv::Mat & img);
-};
-
 class ReqText : public Request
 {
 public:
     ReqText(QString);
 };
 
-
-
-
-//class request
-//{
-//public:
-//    request();
-//};
 
 #endif // REQUEST_H

@@ -30,13 +30,6 @@ bool WTCPClient::sendText(QString msg)
     return this->sendRequest(&reqText);
 }
 
-bool WTCPClient::sendReqImage(const cv::Mat & img)
-{
-    ReqImage reqImage(img);
-    return this->sendRequest(&reqImage);
-}
-
-
 bool WTCPClient::sendRequest(Request * request)
 {
     if (!this->sendByteData(request->headerBytes(), request->headerSize()))

@@ -63,13 +63,13 @@ ReqText::ReqText(QString msg)
 {
     this->_headerSize = sizeof(int) * 4;
     int receiveCount = 1;
-    int requestType = Request::TextMessage;
+//    int requestType = Request::TextMessage;
     int dataSize = 1;
     int firstDataType = Request::String;
 
     this->_headerBytes = new char[this->_headerSize];
     memcpy(this->_headerBytes + sizeof(int) * 0, &receiveCount, sizeof(int)); // dataCount
-    memcpy(this->_headerBytes + sizeof(int) * 1, &requestType, sizeof(int)); // requestType
+//    memcpy(this->_headerBytes + sizeof(int) * 1, &requestType, sizeof(int)); // requestType
     memcpy(this->_headerBytes + sizeof(int) * 2, &dataSize, sizeof(int)); // attrSize;
     memcpy(this->_headerBytes + sizeof(int) * 3, &firstDataType, sizeof(int));
 
@@ -79,37 +79,6 @@ ReqText::ReqText(QString msg)
     memcpy(this->_dataBytesList[0], msg.toStdString().c_str(), msg.toStdString().size() + 1);
     this->_dataLengthList[0] = msg.toStdString().size() + 1;
 
-}
-
-ReqImage::ReqImage(const cv::Mat &img)
-    : Request()
-{
-    /*
-     * reqImage header
-     * datacount : 1 <32bit, 4byte, int>
-     * requestType : 1(image) (32bite, 4byte, int)
-     * dataSize : 1 <32bit, 4byte, int>
-     * dataType:
-     *     2 : OpenCVImage
-     */
-
-    this->_headerSize = sizeof(int) * 4;
-    int receiveCount = 0;
-    int requestType = Request::RoomList;
-    int dataSize = 0;
-    int firstDataType = Request::OpenCVImage;
-
-    this->_headerBytes = new char[this->_headerSize];
-    memcpy(this->_headerBytes + sizeof(int) * 0, &receiveCount, sizeof(int)); // dataCount
-    memcpy(this->_headerBytes + sizeof(int) * 1, &requestType, sizeof(int)); // requestType
-    memcpy(this->_headerBytes + sizeof(int) * 2, &dataSize, sizeof(int)); // attrSize;
-    memcpy(this->_headerBytes + sizeof(int) * 3, &firstDataType, sizeof(int));
-
-    this->_dataLengthList.resize(1);
-    this->_dataBytesList = new char * [1]();
-    this->_dataBytesList[0] = new char[img.total() * img.channels()];
-    memcpy(this->_dataBytesList[0], (char *) img.data, img.total() * img.channels());
-    this->_dataLengthList[0] = img.total() * img.channels();
 }
 
 

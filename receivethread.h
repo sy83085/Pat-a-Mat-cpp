@@ -27,7 +27,6 @@ private:
     bool isRunning;
 
     WTCPClient * client;
-//    LTCPClient * client;
 
     char * headerBytes;
     char ** dataBytesList;
@@ -35,7 +34,7 @@ private:
     std::vector<int> dataLengthList;
     int responseType;
 
-    ResImage * resImage;
+    ResText * resText;
 
 
 
@@ -44,7 +43,7 @@ public slots:
 
 signals:
     void disconnectServerSignal();
-    void resImageSignal(ResImage *);
+    void resTextSignal(ResText *);
 };
 
 #endif // RECEIVETHREAD_H

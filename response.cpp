@@ -36,28 +36,14 @@ void Response::initDataBytesList()
     }
 }
 
-ResImage::ResImage(const char *headerBytes, const char * const *dataBytesList, int headSize, std::vector<int> &dataLengthList)
+ResText::ResText(const char *headerBytes, const char * const *dataBytesList, int headSize, std::vector<int> &dataLengthList)
     : Response(headerBytes, dataBytesList, headSize, dataLengthList)
 {
-    /*
-     * resImage header example
-     * receiveCount : 2 <32bit, 4byte, int>
-     * responseType : 1(resRoomList) (32bite, 4byte, int)
-     * dataSize : 2
-     * dataType:
-     *     2 : OpenCVImage
-     *     1 : int
-     */
-    this->_img = cv::Mat(240, 320, CV_8UC3, (unsigned char *)(dataBytesList[0]));
-    memcpy(&_number, dataBytesList[1], sizeof(int));
+    this->_msg = std::string(dataBytesList[0], dataLengthList[0]);
 }
 
-const cv::Mat &ResImage::img()
+const std::string &ResText::msg()
 {
-    return this->_img;
+    return this->_msg;
 }
 
-const int ResImage::number()
-{
-    return this->_number;
-}

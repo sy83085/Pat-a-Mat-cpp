@@ -4,9 +4,7 @@
 #include <iostream>
 #include <string>
 #include <winsock2.h>
-#include <opencv2/opencv.hpp>
 #include "request.h"
-//#include <QString>
 
 class WTCPClient
 {
@@ -22,7 +20,6 @@ public:
 
 //    bool sendReqImage(const cv::Mat & img);
 
-    bool sendReqImage(const cv::Mat & img);
     bool sendRequest(Request * request);
     bool sendByteData(const char * data, const int dataSize);//실질적으로 데이터를 보내는 것
     bool sendText(QString msg);
@@ -30,12 +27,5 @@ public:
     int receiveByteData(char ** data);//실질적으로 데이터를 받는 것
 };
 
-
-
-//class wtcpclient
-//{
-//public:
-//    wtcpclient();
-//};
 
 #endif // WTCPCLIENT_H
